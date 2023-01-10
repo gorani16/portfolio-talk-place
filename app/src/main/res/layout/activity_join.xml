@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".auth.LoginActivity">
+
+        <LinearLayout
+            android:id="@+id/linear_upper"
+            android:layout_width="0dp"
+            android:layout_height="150dp"
+            android:background="@color/purple"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                style="@style/TextBoldWhite.Text20"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:gravity="center"
+                android:text="회 원 가 입" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/black" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_upper">
+
+            <EditText
+                style="@style/AuthEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="이메일을 입력해주세요."
+                android:importantForAutofill="no"
+                android:inputType="textEmailAddress" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/gray" />
+
+            <EditText
+                style="@style/AuthEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="비밀번호를 입력해주세요."
+                android:importantForAutofill="no"
+                android:inputType="textPassword" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/gray" />
+
+            <EditText
+                style="@style/AuthEditText"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:hint="비밀번호를 확인해주세요."
+                android:importantForAutofill="no"
+                android:inputType="textPassword" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@color/gray" />
+
+            <Button
+                android:id="@+id/btn_join"
+                style="@style/TextBoldWhite.Text20"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/background_purple_r20"
+                android:text="회 원 가 입" />
+
+            <Button
+                android:id="@+id/btn_intro"
+                style="@style/TextBoldWhite.Text20"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/background_purple_r20"
+                android:text="처음 화면으로" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
