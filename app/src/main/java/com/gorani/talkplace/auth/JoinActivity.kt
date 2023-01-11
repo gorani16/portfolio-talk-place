@@ -12,10 +12,9 @@ import com.gorani.talkplace.MainActivity
 import com.gorani.talkplace.R
 import com.gorani.talkplace.databinding.ActivityJoinBinding
 
-class JoinActivity: AppCompatActivity() {
+class JoinActivity : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
-
     private lateinit var binding: ActivityJoinBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -60,7 +59,8 @@ class JoinActivity: AppCompatActivity() {
                         if (task.isSuccessful) {
                             Toast.makeText(this, "회원가입 성공", Toast.LENGTH_LONG).show()
                             val intent = Intent(this, MainActivity::class.java)
-                            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                            intent.flags =
+                                Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
                             startActivity(intent)
 
                         } else {
@@ -68,6 +68,12 @@ class JoinActivity: AppCompatActivity() {
                         }
                     }
             }
+        }
+
+        binding.btnIntro.setOnClickListener {
+            val intent = Intent(this, IntroActivity::class.java)
+            intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            startActivity(intent)
         }
     }
 }

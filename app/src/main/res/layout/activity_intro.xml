@@ -55,12 +55,12 @@
                 android:layout_marginBottom="15dp"
                 android:background="@drawable/background_black_r20"
                 android:text="회 원 가 입"
-                app:layout_constraintBottom_toTopOf="@+id/btn_no_assign"
+                app:layout_constraintBottom_toTopOf="@+id/btn_no_account"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <Button
-                android:id="@+id/btn_no_assign"
+                android:id="@+id/btn_no_account"
                 style="@style/TextBoldBlack.Text22"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
