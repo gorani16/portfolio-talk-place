@@ -6,6 +6,38 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/purple"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:contentInsetStart="0dp"
+            app:layout_scrollFlags="scroll|enterAlways">
+
+            <ImageView
+                android:id="@+id/iv_toolbar_icon"
+                android:layout_width="170dp"
+                android:layout_height="70dp"
+                android:layout_marginStart="10dp"
+                android:scaleType="fitCenter"
+                android:src="@drawable/img_talk_place_main_logo" />
+
+            <ImageView
+                android:id="@+id/iv_toolbar_menu"
+                android:layout_width="46dp"
+                android:layout_height="70dp"
+                android:layout_gravity="end"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/ic_baseline_menu_24" />
+        </androidx.appcompat.widget.Toolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/container_main"
         android:name="androidx.navigation.fragment.NavHostFragment"
@@ -32,47 +64,3 @@
         app:menu="@menu/navigation_main_menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-    <!--        <com.google.android.material.appbar.AppBarLayout-->
-    <!--            android:layout_width="match_parent"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:background="@color/purple"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent">-->
-
-    <!--            <androidx.appcompat.widget.Toolbar-->
-    <!--                android:layout_width="match_parent"-->
-    <!--                android:layout_height="wrap_content"-->
-    <!--                app:contentInsetStart="0dp"-->
-    <!--                app:layout_scrollFlags="scroll|enterAlways">-->
-
-    <!--                <ImageView-->
-    <!--                    android:id="@+id/iv_toolbar_icon"-->
-    <!--                    android:src="@drawable/img_talk_place_main_logo"-->
-    <!--                    android:layout_marginStart="10dp"-->
-    <!--                    android:layout_width="170dp"-->
-    <!--                    android:scaleType="fitCenter"-->
-    <!--                    android:layout_height="70dp"/>-->
-
-    <!--                <ImageView-->
-    <!--                    android:id="@+id/iv_toolbar_menu"-->
-    <!--                    android:layout_gravity="end"-->
-    <!--                    android:src="@drawable/ic_baseline_menu_24"-->
-    <!--                    android:layout_marginEnd="10dp"-->
-    <!--                    android:layout_width="46dp"-->
-    <!--                    android:layout_height="70dp" />-->
-    <!--            </androidx.appcompat.widget.Toolbar>-->
-    <!--        </com.google.android.material.appbar.AppBarLayout>-->
-
-
-    <!--        <Button-->
-    <!--            android:id="@+id/btn_logout"-->
-    <!--            android:layout_width="wrap_content"-->
-    <!--            android:layout_height="wrap_content"-->
-    <!--            android:text="로그아웃"-->
-    <!--            app:layout_constraintBottom_toBottomOf="parent"-->
-    <!--            app:layout_constraintEnd_toEndOf="parent"-->
-    <!--            app:layout_constraintStart_toStartOf="parent"-->
-    <!--            app:layout_constraintTop_toTopOf="parent" />-->

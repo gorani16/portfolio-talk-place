@@ -14,5 +14,13 @@
         android:id="@+id/navigation_board"
         android:name="com.gorani.talkplace.fragments.BoardFragment"
         android:label="BoardFragment"
-        tools:layout="@layout/fragment_board" />
+        tools:layout="@layout/fragment_board" >
+        <action
+            android:id="@+id/action_navigation_board_to_writeActivity"
+            app:destination="@id/writeActivity" />
+    </fragment>
+    <activity
+        android:id="@+id/writeActivity"
+        android:name="com.gorani.talkplace.board.BoardWriteActivity"
+        android:label="WriteActivity" />
 </navigation>
