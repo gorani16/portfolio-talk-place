@@ -15,12 +15,14 @@ class BoardListAdapter(private val items: MutableList<Board>): ListAdapter<Board
     interface ItemClick {
         fun onClick(view: View, position: Int )
     }
+
     var itemClick: ItemClick? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardListViewHolder {
 
         binding = ItemBoardListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return BoardListViewHolder(binding)
+
     }
 
     override fun onBindViewHolder(holder: BoardListViewHolder, position: Int) {
@@ -46,6 +48,7 @@ class BoardListAdapter(private val items: MutableList<Board>): ListAdapter<Board
 }
 
 class BoardListDiffCallback : DiffUtil.ItemCallback<Board>() {
+
     override fun areItemsTheSame(oldItem: Board, newItem: Board): Boolean {
         return oldItem.uid == newItem.uid
     }
