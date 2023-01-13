@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
 import com.gorani.talkplace.R
 import com.gorani.talkplace.board.Board
+import com.gorani.talkplace.board.BoardInsideActivity
 import com.gorani.talkplace.board.BoardListAdapter
 import com.gorani.talkplace.board.BoardWriteActivity
 import com.gorani.talkplace.databinding.FragmentBoardBinding
@@ -50,8 +51,14 @@ class BoardFragment: Fragment() {
             submitList(boardDataList)
         }
 
+        // 리사이클러 뷰 아이템 클릭
         boardListAdapter.itemClick = object : BoardListAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
+                val intent = Intent(requireContext(), BoardInsideActivity::class.java)
+                intent.putExtra("title", boardDataList[position].title)
+                intent.putExtra("content", boardDataList[position].content)
+                intent.putExtra("time", boardDataList[position].time)
+                startActivity(intent)
                 Toast.makeText(requireContext(), boardDataList[position].title, Toast.LENGTH_LONG).show()
             }
 
@@ -78,6 +85,7 @@ class BoardFragment: Fragment() {
                     val item = dataModel.getValue(Board::class.java)
                     boardDataList.add(item!!)
 
+                    boardDataList.reverse()
                     boardListAdapter.notifyDataSetChanged()
 
                 }

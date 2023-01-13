@@ -12,6 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.TalkPlace"
         tools:targetApi="31">
+        <activity android:name=".board.BoardInsideActivity"
+            android:exported="true">
+
+        </activity>
         <activity
             android:name=".board.BoardWriteActivity"
             android:exported="true">
