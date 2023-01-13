@@ -27,6 +27,7 @@ class BoardFragment: Fragment() {
     private lateinit var binding: FragmentBoardBinding
 
     private val boardDataList = mutableListOf<Board>()
+    private val boardKeyList = mutableListOf<String>()
 
     private lateinit var boardListAdapter: BoardListAdapter
 
@@ -53,12 +54,11 @@ class BoardFragment: Fragment() {
 
         boardListAdapter.itemClick = object : BoardListAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
+
                 val intent = Intent(requireContext(), BoardInsideActivity::class.java)
-                intent.putExtra("title", boardDataList[position].title)
-                intent.putExtra("content", boardDataList[position].content)
-                intent.putExtra("time", boardDataList[position].time)
+                intent.putExtra("boardKey", boardKeyList[position])
                 startActivity(intent)
-                Toast.makeText(requireContext(), boardDataList[position].title, Toast.LENGTH_LONG).show()
+
             }
 
         }
@@ -79,10 +79,11 @@ class BoardFragment: Fragment() {
 
                 for (dataModel in dataSnapshot.children) {
 
-                    Log.d(TAG, dataModel.toString())
                     val item = dataModel.getValue(Board::class.java)
                     boardDataList.add(item!!)
+                    boardKeyList.add(dataModel.key.toString())
 
+                    boardKeyList.reverse()
                     boardDataList.reverse()
                     boardListAdapter.notifyDataSetChanged()
 
@@ -94,7 +95,6 @@ class BoardFragment: Fragment() {
             }
         }
         FBRef.boardRef.addValueEventListener(postListener)
-
     }
 
 }
