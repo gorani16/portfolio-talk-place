@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,18 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <!-- Recycler View 배치 : 게시글 목록 -->
-
-        <TextView
-            android:id="@+id/tv_test"
-            style="@style/TextBoldBlack.Text24"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Board Fragment"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_board_list"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            tools:listitem="@layout/item_board_list" />
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/btn_write"

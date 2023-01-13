@@ -29,6 +29,8 @@ class BoardWriteActivity: AppCompatActivity() {
             val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
 
+            // TODO 게시글 작성 유효성 기능 추가하기.
+
             FBRef.boardRef
                 .push()
                 .setValue(Board(title, content, uid, time))
