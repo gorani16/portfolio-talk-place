@@ -44,14 +44,13 @@ class BoardFragment: Fragment() {
 
         boardListAdapter = BoardListAdapter(boardDataList)
 
-        getBoardData()  // 게시글 데이터 가져오는 함수 : 서버에서 데이터를 받아오고
+        getBoardData()
 
-        // 받아온 데이터를 리사이클러 뷰에 할당
+        // 서버에서 받아온 데이터를 리사이클러 뷰에 할당
         binding.rvBoardList.adapter = boardListAdapter.apply {
             submitList(boardDataList)
         }
 
-        // 리사이클러 뷰 아이템 클릭
         boardListAdapter.itemClick = object : BoardListAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
                 val intent = Intent(requireContext(), BoardInsideActivity::class.java)
@@ -65,7 +64,6 @@ class BoardFragment: Fragment() {
         }
 
         binding.btnWrite.setOnClickListener {
-            Toast.makeText(requireContext(), "게시글 작성 버튼", Toast.LENGTH_LONG).show()
             val intent = Intent(context, BoardWriteActivity::class.java)
             startActivity(intent)
         }

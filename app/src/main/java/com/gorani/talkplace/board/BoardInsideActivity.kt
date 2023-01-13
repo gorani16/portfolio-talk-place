@@ -25,6 +25,8 @@ class BoardInsideActivity : AppCompatActivity() {
         binding.tvBoardContent.text = content
         binding.tvWrittenTime.text = time
 
-        Log.d(TAG, "Data : $title, $content, $time")
+        binding.ivBackButton.setOnClickListener {
+            finish()
+        }
     }
 }

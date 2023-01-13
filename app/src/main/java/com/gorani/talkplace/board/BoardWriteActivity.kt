@@ -1,5 +1,6 @@
 package com.gorani.talkplace.board
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -24,18 +25,36 @@ class BoardWriteActivity: AppCompatActivity() {
          *      -boardModel( title, content, uid, time )
          */
         binding.btnInput.setOnClickListener {
+
+            var isWritten = true
             val title = binding.etWriteTitle.text.toString()
             val content = binding.etWriteContent.text.toString()
             val uid = FBAuth.getUid()
             val time = FBAuth.getTime()
 
-            // TODO 게시글 작성 유효성 기능 추가하기.
+            if (title.isEmpty()) {
+                Toast.makeText(this, "제목을 입력하세요.", Toast.LENGTH_LONG).show()
+                isWritten = false
 
-            FBRef.boardRef
-                .push()
-                .setValue(Board(title, content, uid, time))
+            } else if (content.isEmpty()) {
+                Toast.makeText(this, "내용을 입력하세요.", Toast.LENGTH_LONG).show()
+                isWritten = false
 
-            Toast.makeText(this, "게시되었습니다.", Toast.LENGTH_LONG).show()
+            }
+
+            if (isWritten) {
+                FBRef.boardRef
+                    .push()
+                    .setValue(Board(title, content, uid, time))
+
+                Toast.makeText(this, "게시되었습니다.", Toast.LENGTH_LONG).show()
+                finish()
+
+            }
+
+        }
+
+        binding.ivBackButton.setOnClickListener {
             finish()
         }
 
