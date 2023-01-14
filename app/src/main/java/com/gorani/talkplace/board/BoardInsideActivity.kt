@@ -2,7 +2,10 @@ package com.gorani.talkplace.board
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
+import android.widget.Button
 import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
@@ -23,17 +26,42 @@ class BoardInsideActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityBoardInsideBinding
 
+    private lateinit var key: String
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
 
+        binding.boardSettingButton.setOnClickListener {
+            showDialog()
+        }
 
-        // 이 key 로 해당 게시글, 해당 이미지를 가지고옴
-        val key = intent.getStringExtra("boardKey") as String
+        key = intent.getStringExtra("boardKey") as String
         getBoardData(key)
         getImageData(key)
 
         binding.ivBackButton.setOnClickListener {
+            finish()
+        }
+
+    }
+
+    private fun showDialog() {
+        val mDialogView = LayoutInflater.from(this).inflate(R.layout.custom_dialog, null)
+        val mBuilder = AlertDialog.Builder(this)
+            .setView(mDialogView)
+            .setTitle("게시글 수정 / 삭제")
+
+        val alertDialog = mBuilder.show()
+        alertDialog.findViewById<Button>(R.id.btn_modify)?.setOnClickListener {
+            Toast.makeText(this, "수정모드 활성화.", Toast.LENGTH_LONG).show()
+
+        }
+
+        alertDialog.findViewById<Button>(R.id.btn_delete)?.setOnClickListener {
+
+            FBRef.boardRef.child(key).removeValue()
+            Toast.makeText(this, "삭제됐습니다.", Toast.LENGTH_LONG).show()
             finish()
         }
 
@@ -61,12 +89,17 @@ class BoardInsideActivity : AppCompatActivity() {
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
-                val boardData = dataSnapshot.getValue(Board::class.java)
-                boardData?.let {
-                    binding.tvBoardTitle.text = boardData.title
-                    binding.tvBoardContent.text = boardData.content
-                    binding.tvWrittenTime.text = boardData.time
+                try {
+                    val boardData = dataSnapshot.getValue(Board::class.java)
+                    boardData?.let {
+                        binding.tvBoardTitle.text = boardData.title
+                        binding.tvBoardContent.text = boardData.content
+                        binding.tvWrittenTime.text = boardData.time
+                    }
+                } catch (e: Exception) {
+                    Log.d(TAG, "게시글 삭제 완료")
                 }
+
 
             }
 
