@@ -16,6 +16,9 @@
         android:theme="@style/Theme.TalkPlace"
         tools:targetApi="31">
 
+        <activity android:name=".setting.SettingActivity"
+            android:exported="true" />
+
         <activity
             android:name=".board.BoardModifyActivity"
             android:exported="true" />
