@@ -1,5 +1,6 @@
 package com.gorani.talkplace.board
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -22,7 +23,7 @@ import com.gorani.talkplace.utils.FBRef
 
 class BoardInsideActivity : AppCompatActivity() {
 
-    private val TAG = this::class.java.simpleName
+    private val TAG = BoardInsideActivity::class.java.simpleName
 
     private lateinit var binding: ActivityBoardInsideBinding
 
@@ -55,7 +56,10 @@ class BoardInsideActivity : AppCompatActivity() {
         val alertDialog = mBuilder.show()
         alertDialog.findViewById<Button>(R.id.btn_modify)?.setOnClickListener {
             Toast.makeText(this, "수정모드 활성화.", Toast.LENGTH_LONG).show()
-
+            val intent = Intent(this, BoardModifyActivity::class.java)
+            intent.putExtra("key", key)
+            startActivity(intent)
+            alertDialog.dismiss()
         }
 
         alertDialog.findViewById<Button>(R.id.btn_delete)?.setOnClickListener {

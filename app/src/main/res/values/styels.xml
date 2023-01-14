@@ -50,6 +50,20 @@
         <item name="android:paddingBottom">25dp</item>
     </style>
 
+    <style name="InsideTextContent" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textColorHint">@color/gray2</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:inputType">text</item>
+        <item name="android:gravity">top</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">20dp</item>
+        <item name="android:paddingStart">15dp</item>
+        <item name="android:paddingEnd">15dp</item>
+        <item name="android:paddingTop">25dp</item>
+        <item name="android:paddingBottom">25dp</item>
+    </style>
+
     <!-- Text Style -->
     <style name="TextBlack">
         <item name="android:textColor">@color/black</item>

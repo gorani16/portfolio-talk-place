@@ -78,7 +78,7 @@
 
                 <TextView
                     android:id="@+id/tv_board_content"
-                    style="@style/WriteEditTextContent"
+                    style="@style/InsideTextContent"
                     android:layout_width="0dp"
                     android:layout_height="280dp"
                     android:importantForAutofill="no"
