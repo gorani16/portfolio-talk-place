@@ -1,6 +1,7 @@
 package com.gorani.talkplace.board
 
 import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.bumptech.glide.RequestManager
 import com.gorani.talkplace.databinding.ItemBoardListBinding
+import com.gorani.talkplace.utils.FBAuth
 
 class BoardListAdapter(private val items: MutableList<Board>): ListAdapter<Board, BoardListAdapter.BoardListViewHolder>(BoardListDiffCallback())  {
 
@@ -48,6 +50,9 @@ class BoardListAdapter(private val items: MutableList<Board>): ListAdapter<Board
         fun bind(board: Board) {
 
             binding.board = board
+            if (board.uid == FBAuth.getUid()) {
+                binding.itemView.setBackgroundColor(Color.parseColor("#F1DCFF"))
+            }
             binding.executePendingBindings()
         }
 

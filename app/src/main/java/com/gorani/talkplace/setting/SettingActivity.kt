@@ -34,3 +34,4 @@ class SettingActivity: AppCompatActivity() {
         }
     }
 }
+// 두 번째 로그인 계정 : test11@test.com 111111
