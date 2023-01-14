@@ -5,9 +5,14 @@ import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.ktx.storage
+import com.gorani.talkplace.GlideApp
 import com.gorani.talkplace.R
 import com.gorani.talkplace.databinding.ActivityBoardInsideBinding
 import com.gorani.talkplace.utils.FBRef
@@ -23,12 +28,30 @@ class BoardInsideActivity : AppCompatActivity() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_board_inside)
 
 
+        // 이 key 로 해당 게시글, 해당 이미지를 가지고옴
         val key = intent.getStringExtra("boardKey") as String
-
         getBoardData(key)
+        getImageData(key)
 
         binding.ivBackButton.setOnClickListener {
             finish()
+        }
+
+    }
+
+    private fun getImageData(key: String) {
+
+        val pathString = "$key.png"
+        val storageReference = Firebase.storage.reference.child(pathString)
+        val imageView = binding.ivBoardImageArea
+
+        storageReference.downloadUrl.addOnCompleteListener { uri ->
+            if (uri.isSuccessful) {
+
+                GlideApp.with(this)
+                    .load(uri.result)
+                    .into(imageView)
+            }
         }
 
     }

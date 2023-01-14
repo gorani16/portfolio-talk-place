@@ -5,5 +5,5 @@ data class Board(
     val content: String = "",
     val uid: String = "",
     val time: String = "",
-    val thumbnail: String? = ""
+    val thumbnailImageUrl: String? = ""
 )

@@ -12,13 +12,18 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
 import com.gorani.talkplace.R
 import com.gorani.talkplace.databinding.ActivityBoardWriteBinding
+import com.gorani.talkplace.fragments.BoardFragment
 import com.gorani.talkplace.utils.FBAuth
 import com.gorani.talkplace.utils.FBRef
 import java.io.ByteArrayOutputStream
 
 class BoardWriteActivity: AppCompatActivity() {
 
+    private val TAG = BoardWriteActivity::class.java.simpleName
+
     private lateinit var binding: ActivityBoardWriteBinding
+
+    private var isImageUpload = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -53,12 +58,13 @@ class BoardWriteActivity: AppCompatActivity() {
             if (isWritten) {
                 FBRef.boardRef
                     .child(key)
-                    .setValue(Board(title, content, uid, time))
+                    .setValue(Board(title, content, uid, time, thumbnailImageUrl = key))
 
                 Toast.makeText(this, "게시글이 작성됐습니다.", Toast.LENGTH_LONG).show()
 
-                imageUpload(key)
-
+                if (isImageUpload) {
+                    imageUpload(key)
+                }
                 finish()
             }
 
@@ -82,6 +88,7 @@ class BoardWriteActivity: AppCompatActivity() {
         binding.ivAddImageArea.setOnClickListener {
             val gallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
             startActivityForResult(gallery, 100)
+            isImageUpload = true
         }
     }
 
@@ -89,7 +96,7 @@ class BoardWriteActivity: AppCompatActivity() {
 
         val storage = Firebase.storage
         val storageRef = storage.reference
-        val mountainsRef = storageRef.child("$key + png")
+        val mountainsRef = storageRef.child("$key.png")
 
         val imageView = binding.ivAddImageArea
         imageView.isDrawingCacheEnabled = true
@@ -109,7 +116,6 @@ class BoardWriteActivity: AppCompatActivity() {
 
     }
 
-    // TODO 권한 요청 기능 추가하기.
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if (resultCode == RESULT_OK && requestCode == 100) {

@@ -9,9 +9,13 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import com.bumptech.glide.Glide
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
+import com.gorani.talkplace.GlideApp
 import com.gorani.talkplace.R
 import com.gorani.talkplace.board.Board
 import com.gorani.talkplace.board.BoardInsideActivity
@@ -45,13 +49,18 @@ class BoardFragment: Fragment() {
 
         boardListAdapter = BoardListAdapter(boardDataList)
 
+        Log.d("!!", "boardDataList : $boardDataList")
+        // 서버로부터 게시판 데이터 가져오기
         getBoardData()
 
         // 서버에서 받아온 데이터를 리사이클러 뷰에 할당
         binding.rvBoardList.adapter = boardListAdapter.apply {
             submitList(boardDataList)
+            Log.d("!!!", "boardDataList : $boardDataList")
+
         }
 
+        // 리사이클러 뷰 아이템 클릭
         boardListAdapter.itemClick = object : BoardListAdapter.ItemClick {
             override fun onClick(view: View, position: Int) {
 
@@ -60,9 +69,9 @@ class BoardFragment: Fragment() {
                 startActivity(intent)
 
             }
-
         }
 
+        // 뒤로가기
         binding.btnWrite.setOnClickListener {
             val intent = Intent(context, BoardWriteActivity::class.java)
             startActivity(intent)
@@ -85,9 +94,12 @@ class BoardFragment: Fragment() {
 
                     boardKeyList.reverse()
                     boardDataList.reverse()
+
                     boardListAdapter.notifyDataSetChanged()
 
                 }
+                Log.d("BoardFragment!!!", "boardKeyList : $boardKeyList")
+                Log.d("BoardFragment!!!", "boardDataList : $boardDataList")
             }
 
             override fun onCancelled(dataBaserror: DatabaseError) {

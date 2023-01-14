@@ -1,11 +1,14 @@
 package com.gorani.talkplace.board
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView.ViewHolder
+import com.bumptech.glide.RequestManager
 import com.gorani.talkplace.databinding.ItemBoardListBinding
 
 class BoardListAdapter(private val items: MutableList<Board>): ListAdapter<Board, BoardListAdapter.BoardListViewHolder>(BoardListDiffCallback())  {
@@ -17,6 +20,7 @@ class BoardListAdapter(private val items: MutableList<Board>): ListAdapter<Board
     }
 
     var itemClick: ItemClick? = null
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BoardListViewHolder {
 
@@ -35,15 +39,18 @@ class BoardListAdapter(private val items: MutableList<Board>): ListAdapter<Board
         holder.bind(getItem(position))
     }
 
+    override fun getItemViewType(position: Int): Int {
+        return position
+    }
+
     class BoardListViewHolder(private val binding: ItemBoardListBinding): RecyclerView.ViewHolder(binding.root) {
 
         fun bind(board: Board) {
-            binding.tvBoardTitle.text = board.title
-            binding.tvBoardContent.text = board.content
-            binding.tvBoardTime.text = board.time
-            binding.executePendingBindings()
 
+            binding.board = board
+            binding.executePendingBindings()
         }
+
     }
 }
 
