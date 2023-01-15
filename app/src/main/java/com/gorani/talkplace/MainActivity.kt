@@ -4,13 +4,10 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.ImageView
-import androidx.databinding.DataBindingUtil
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
 import com.gorani.talkplace.setting.SettingActivity
 
 class MainActivity : AppCompatActivity() {
@@ -33,6 +30,6 @@ class MainActivity : AppCompatActivity() {
             val intent = Intent(this, SettingActivity::class.java)
             startActivity(intent)
         }
-
     }
+
 }
