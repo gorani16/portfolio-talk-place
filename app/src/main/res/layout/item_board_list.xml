@@ -8,16 +8,13 @@
             name="board"
             type="com.gorani.talkplace.board.Board" />
 
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/itemView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:layout_marginBottom="16dp"
+        android:layout_margin="10dp"
         android:background="@drawable/background_bluegray_r20"
         android:orientation="vertical"
         android:padding="15dp">

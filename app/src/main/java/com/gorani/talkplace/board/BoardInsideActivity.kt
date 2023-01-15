@@ -19,6 +19,8 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.gorani.talkplace.GlideApp
 import com.gorani.talkplace.R
+import com.gorani.talkplace.comment.Comment
+import com.gorani.talkplace.comment.CommentAdapter
 import com.gorani.talkplace.databinding.ActivityBoardInsideBinding
 import com.gorani.talkplace.utils.FBAuth
 import com.gorani.talkplace.utils.FBRef
@@ -28,6 +30,10 @@ class BoardInsideActivity : AppCompatActivity() {
     private val TAG = BoardInsideActivity::class.java.simpleName
 
     private lateinit var binding: ActivityBoardInsideBinding
+
+    private val commentDataList = mutableListOf<Comment>()
+
+    private lateinit var commentAdapter: CommentAdapter
 
     private lateinit var key: String
 
@@ -43,10 +49,61 @@ class BoardInsideActivity : AppCompatActivity() {
         getBoardData(key)
         getImageData(key)
 
+        binding.ivCommentInputButton.setOnClickListener {
+            insertComment(key)
+        }
+
+        getCommentData(key)
+
+        commentAdapter = CommentAdapter(commentDataList)
+        binding.rvCommentList.adapter = commentAdapter.apply {
+            submitList(commentDataList)
+        }
+
         binding.ivBackButton.setOnClickListener {
             finish()
         }
 
+    }
+
+    private fun getCommentData(key: String) {
+
+        val postListener = object : ValueEventListener {
+            override fun onDataChange(dataSnapshot: DataSnapshot) {
+
+                commentDataList.clear()
+
+                for (dataModel in dataSnapshot.children) {
+                    val item = dataModel.getValue(Comment::class.java)
+                    commentDataList.add(item!!)
+                }
+                Log.d("$TAG!!!", commentDataList.toString())
+                commentAdapter.notifyDataSetChanged()
+
+            }
+
+            override fun onCancelled(dataBaserror: DatabaseError) {
+                Log.w(TAG, "loadPost:onCancelled", dataBaserror.toException())
+            }
+        }
+        FBRef.commentRef.child(key).addValueEventListener(postListener)
+    }
+
+    private fun insertComment(key: String) {
+
+        FBRef.commentRef
+            .child(key)
+            .push()
+            .setValue(
+                Comment(
+                    binding.etWriteComment.text.toString(),
+                    FBAuth.getTime(),
+                    FBAuth.getUid()
+                )
+            )
+
+        Toast.makeText(this, "댓글이 입력됐습니다.", Toast.LENGTH_LONG).show()
+        binding.etWriteComment.setText("")
     }
 
     private fun showDialog() {
@@ -85,6 +142,8 @@ class BoardInsideActivity : AppCompatActivity() {
                 GlideApp.with(this)
                     .load(uri.result)
                     .into(imageView)
+            } else {
+                binding.ivBoardImageArea.isVisible = false
             }
         }
 
@@ -102,8 +161,8 @@ class BoardInsideActivity : AppCompatActivity() {
                         binding.tvBoardContent.text = boardData.content
                         binding.tvWrittenTime.text = boardData.time
 
-                        val myUid = FBAuth.getUid() as String
-                        val boardWriterUid = boardData.uid as String
+                        val myUid = FBAuth.getUid()
+                        val boardWriterUid = boardData.uid
 
                         if (myUid == boardWriterUid) {
                             binding.boardSettingButton.isVisible = true
@@ -113,7 +172,6 @@ class BoardInsideActivity : AppCompatActivity() {
                 } catch (e: Exception) {
                     Log.d(TAG, "게시글 삭제 완료")
                 }
-
 
             }
 

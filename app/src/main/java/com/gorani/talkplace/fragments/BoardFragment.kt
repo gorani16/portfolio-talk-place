@@ -49,14 +49,12 @@ class BoardFragment: Fragment() {
 
         boardListAdapter = BoardListAdapter(boardDataList)
 
-        Log.d("!!", "boardDataList : $boardDataList")
         // 서버로부터 게시판 데이터 가져오기
         getBoardData()
 
         // 서버에서 받아온 데이터를 리사이클러 뷰에 할당
         binding.rvBoardList.adapter = boardListAdapter.apply {
             submitList(boardDataList)
-            Log.d("!!!", "boardDataList : $boardDataList")
 
         }
 
