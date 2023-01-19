@@ -124,8 +124,8 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        tools:listitem="@layout/item_comment"
-                        app:layout_constraintTop_toBottomOf="@+id/iv_board_image_area" />
+                        app:layout_constraintTop_toBottomOf="@+id/iv_board_image_area"
+                        tools:listitem="@layout/item_comment" />
 
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -134,38 +134,37 @@
         </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:orientation="horizontal"
-            android:layout_alignParentBottom="true"
             android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_alignParentBottom="true"
             android:background="@color/white"
-            android:layout_height="60dp">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/et_write_comment"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                android:padding="20dp"
-                app:layout_constraintHorizontal_chainStyle="packed"
-                android:background="@android:color/transparent"
-                android:hint="댓글을 입력하세요."
+                style="@style/WriteComment"
                 android:layout_width="320dp"
+                android:layout_height="match_parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/iv_comment_input_button"
-                android:layout_height="match_parent" />
+                app:layout_constraintHorizontal_chainStyle="packed"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <ImageView
                 android:id="@+id/iv_comment_input_button"
-                android:src="@drawable/ic_baseline_create_24"
-                android:background="@color/blue_gray"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/et_write_comment"
-                app:shapeAppearanceOverlay="@style/Circle_20"
-                android:layout_gravity="end"
                 android:layout_width="100dp"
-                android:paddingEnd="10dp"
                 android:layout_height="55dp"
+                android:layout_gravity="end"
+                android:background="@color/blue_gray"
+                android:paddingStart="1dp"
+                android:paddingEnd="10dp"
+                android:src="@drawable/ic_baseline_create_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/et_write_comment"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/Circle_20"
                 app:tint="@color/purple" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
