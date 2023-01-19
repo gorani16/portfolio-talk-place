@@ -63,10 +63,11 @@
 
             <EditText
                 android:id="@+id/et_password"
-                style="@style/AuthEditText"
+                style="@style/PasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="비밀번호를 입력해주세요."
+                tools:text="123456"
                 android:importantForAutofill="no"
                 android:inputType="textPassword" />
 
@@ -79,7 +80,8 @@
 
             <EditText
                 android:id="@+id/et_password_check"
-                style="@style/AuthEditText"
+                style="@style/PasswordEditText"
+                tools:text="123456"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="비밀번호를 확인해주세요."

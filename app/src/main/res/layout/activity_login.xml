@@ -63,11 +63,12 @@
 
             <EditText
                 android:id="@+id/et_password"
-                style="@style/AuthEditText"
+                style="@style/PasswordEditText"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:hint="비밀번호를 입력해주세요."
                 android:importantForAutofill="no"
+                tools:text="123456"
                 android:inputType="textPassword" />
 
             <View

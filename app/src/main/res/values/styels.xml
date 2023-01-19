@@ -22,11 +22,22 @@
     <!-- Edit Text Style -->
     <style name="AuthEditText" parent="android:Widget.EditText">
         <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/black</item>
         <item name="android:textSize">20sp</item>
         <item name="android:layout_margin">10dp</item>
         <item name="android:paddingStart">10dp</item>
         <item name="android:paddingEnd">10dp</item>
-        <item name="android:fontFamily">@font/font_jua</item>
+        <item name="android:fontFamily">@font/font_ddangs</item>
+    </style>
+
+    <style name="PasswordEditText">
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">@color/black</item>
+        <item name="android:textSize">20sp</item>
+        <item name="android:layout_margin">10dp</item>
+        <item name="android:paddingStart">10dp</item>
+        <item name="android:paddingEnd">10dp</item>
+        <item name="android:fontFamily">@font/font_ddangs</item>
     </style>
 
     <style name="WriteComment">
