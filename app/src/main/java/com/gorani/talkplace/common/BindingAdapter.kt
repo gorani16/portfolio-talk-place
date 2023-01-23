@@ -21,6 +21,7 @@ fun loadImage(view: ImageView, imageUrl: String) {
             Log.d("loadImage", imageUrl)
             GlideApp.with(view.context)
                 .load(uri.result)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .into(view)
         } else {
             Log.d("loadImage", imageUrl)

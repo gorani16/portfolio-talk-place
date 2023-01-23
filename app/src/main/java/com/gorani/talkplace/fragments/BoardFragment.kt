@@ -74,6 +74,7 @@ class BoardFragment: Fragment() {
 
     private fun getBoardData() {
 
+        val currentBoardListSize = boardDataList.size
         val postListener = object : ValueEventListener {
             override fun onDataChange(dataSnapshot: DataSnapshot) {
 
@@ -89,6 +90,7 @@ class BoardFragment: Fragment() {
                     boardDataList.reverse()
 
                     boardListAdapter.notifyDataSetChanged()
+                    Log.d("boardDataList", boardDataList.size.toString())
 
                 }
                 Log.d("BoardFragment!!!", "boardKeyList : $boardKeyList")
